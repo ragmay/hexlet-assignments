@@ -5,7 +5,6 @@ require "open-uri"
 require "addressable"
 require_relative "ipgeobase/version"
 require "net/http"
-require "byebug"
 require_relative "ipgeobase/ip_meta_data"
 
 module Ipgeobase

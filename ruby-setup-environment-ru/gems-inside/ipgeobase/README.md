@@ -2,8 +2,6 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ipgeobase`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -22,7 +20,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+ example = Ipgeobase.lookup("195.250.65.246")
+ example.city="Yerevan",
+ example.country="Armenia",
+ example.countryCode="AM",
+ example.lat=40.1817,
+ example.lon=44.5099,
+ example.region="ER",
+ example.regionName="Yerevan">
+
 
 ## Development
 
