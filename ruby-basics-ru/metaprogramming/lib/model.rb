@@ -9,19 +9,15 @@ module Model
 
   def initialize(params = {})
     @attributes = {}
-    params.each do |key, value|
-      options = self.class.default_values[key]
-      key = key.to_sym
-      @attributes[key] = self.class.convert_type(value, options)
+    self.class.default_values.each do |name, options|
+      value = params.key?(name) ? params[name] : options.fetch(:default, nil)
+      options = self.class.default_values[name]
+      @attributes[name] = self.class.convert_type(value, options)
     end
   end
 
   def attributes
-    hash = {}
-    @attributes.map do |key, value|
-      hash[key] = value
-    end
-    hash
+    @attributes
   end
 
   module ClassMethods
@@ -30,6 +26,7 @@ module Model
     end
 
     def attribute(name, options)
+      @default_values ||= {}
       default_values[name] = options
 
       initialize_getter(name)
@@ -41,6 +38,8 @@ module Model
     end
 
     def convert_type(value, options)
+      return value if value.nil?
+
       case options[:type]
       when :integer
         value.to_i
@@ -50,15 +49,13 @@ module Model
         DateTime.parse(value)
       when :boolean
         !!value
+      else
+        define_method("#{name}=") { |value| @attributes[name] = value }
       end
     end
 
     def initialize_setter(name, options)
-      if options.empty?
-        define_method("#{name}=") { |value| @attributes[name] = value }
-      else
-        define_method("#{name}=") { |value| @attributes[name] = self.class.convert_type(value, options) }
-      end
+      define_method("#{name}=") { |value| @attributes[name] = self.class.convert_type(value, options) }
     end
   end
 end
