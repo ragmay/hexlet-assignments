@@ -1,3 +1,5 @@
+[![hexlet-check](https://github.com/ragmay/hexlet-assignments/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ragmay/hexlet-assignments/actions/workflows/hexlet-check.yml)
+
 # Gems Inside
 
 Как и в большинстве языков программирования, в Ruby можно использовать широкий набор сторонних библиотек. Большая часть из них реализована в форме гема.
