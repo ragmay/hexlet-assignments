@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'happymapper'
+require "happymapper"
 
 module Ipgeobase
   class IpMetaData
     include HappyMapper
 
-    tag 'query'
+    tag "query"
     element :country, String, deep: true
     element :countryCode, String, deep: true
     element :region, String, deep: true
